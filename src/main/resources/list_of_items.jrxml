@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="list_of_items" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ced95029-b569-4027-895c-af2843a4e088">
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="itemCode" class="java.lang.String"/>
+	<field name="itemName" class="java.lang.String"/>
+	<field name="itemGram" class="java.lang.String"/>
+	<field name="itemColor" class="java.lang.String"/>
+	<field name="itemPrice" class="java.lang.Double"/>
+	<field name="quantity" class="java.lang.Integer"/>
+	<field name="sold" class="java.lang.Integer"/>
+	<field name="totalQuantity" class="java.lang.Integer"/>
+	<field name="retailPrice" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="122" y="24" width="310" height="38" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[Inventory Products]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="164" y="1" width="218" height="22" uuid="88d4231e-f014-4b0d-b871-1737ba63a1ae"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Alhamdulillah Enterprises]]></text>
+			</staticText>
+			<image>
+				<reportElement x="32" y="0" width="78" height="69" uuid="a5658b93-d95f-4fb1-aa1e-87c5103dfc58"/>
+				<imageExpression><![CDATA["favicon.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="27" width="555" height="1" uuid="1a61a836-d137-48b1-ad67-6ff64600bf93"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="1" width="163" height="26" isPrintWhenDetailOverflows="true" uuid="b9fb0b70-930a-433f-aa0e-1d6426d58758">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a0a7562-1d72-4404-baf3-28da04d2de72"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="1" width="56" height="26" isPrintWhenDetailOverflows="true" uuid="06ce4dfb-a5bf-4681-99a8-fa56128a5788">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e06d00e5-0847-4973-9a9f-ce088a45c400"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Size]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="1" width="70" height="26" isPrintWhenDetailOverflows="true" uuid="9c29d860-8108-4126-88a5-d6198fe366b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b4971c3-9be0-467e-8a28-7e25c797091a"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="1" width="50" height="26" isPrintWhenDetailOverflows="true" uuid="176a61b1-e44d-4c2e-a569-bb232e6ecd7a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5648383-4b82-4abf-870f-6f261826d450"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Whole Sale Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="1" width="60" height="26" uuid="8d6d5427-ac20-4f94-b4b0-39f58e7fcda0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="616c489e-0429-4ed4-b0a7-0e0dd50025f1"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="1" width="50" height="26" uuid="d81e4d15-80a0-4076-aa27-57daaaeae454">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9de3bd2d-3652-4959-b45d-1006af7e9ff8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Sold Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="1" width="65" height="26" uuid="7e117394-3e72-4515-823e-cdbe23d6fc16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dfa6b61b-0b4c-4dfa-aa97-0edbd3947257"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Total Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="40" height="28" uuid="0e2015d2-9c10-4e39-8833-1c46897574f0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a1346418-5430-487a-ad77-d28d77777c5b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<text><![CDATA[Retail Price]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="2" width="555" height="10" uuid="a98495d8-3c8d-4fa0-81f5-30c3efc2f766"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="1" y="0" width="163" height="10" uuid="e6ffaea0-8ae6-47e4-9066-424fc7ea2681">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a0a7562-1d72-4404-baf3-28da04d2de72"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{itemName}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="164" y="0" width="56" height="10" uuid="f8b76d8c-9a97-4d42-84a1-59362858d155">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e06d00e5-0847-4973-9a9f-ce088a45c400"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{itemGram}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="220" y="0" width="70" height="10" uuid="e41f23a8-f5a0-405d-88f5-d2fe56597bbf">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b4971c3-9be0-467e-8a28-7e25c797091a"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{itemColor}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="290" y="0" width="50" height="10" uuid="0c7ee775-e136-4f20-a100-197de22693aa">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5648383-4b82-4abf-870f-6f261826d450"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{itemPrice}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="0" width="60" height="10" uuid="8cb9e031-e901-4981-856e-21bd64da05c7">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="616c489e-0429-4ed4-b0a7-0e0dd50025f1"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="440" y="0" width="50" height="10" uuid="bc69cda1-ef65-4ec3-9acc-94702b3832f6">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9de3bd2d-3652-4959-b45d-1006af7e9ff8"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sold}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="490" y="0" width="50" height="10" uuid="071ab0f0-aaa5-433f-a0f4-550b91e351cd">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dfa6b61b-0b4c-4dfa-aa97-0edbd3947257"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalQuantity}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="340" y="0" width="40" height="10" uuid="658bb41c-72aa-4da5-85da-4677616f522a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a1346418-5430-487a-ad77-d28d77777c5b"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Serif" size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{retailPrice}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#DBDBDB" backcolor="#F2EBDF" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0193f9b3-1559-491a-8580-b6988863b6a1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="d00b105e-494b-418b-8ac9-8b1b4824f4f0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="0616f3fe-0354-456f-8911-ec30ec51a5ae"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<head>
+<title>Student Form</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+	 <h1 class="h2 pt-3 mb-3 pb-2 border-bottom">Product</h1>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+            <div class="col">
+              <form action="#" th:action="@{/items/save}" th:object="${item}"  method="POST" class="needs-validation" autocomplete="off">
+               	<input type="hidden" th:field="*{id}" />
+               	<input type="hidden" th:field="*{quantity}" />
+                <div class="row">
+                  <div class="col-md-3 mb-3">
+                    <label for="code">Code*</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="code"
+                      th:field="*{code}"
+                      placeholder="ex: 12345445343"
+                      value=""
+                      required
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></p>
+                  </div>
+                   <div class="col-md-3 mb-3">
+                    <label for="itemCode">Product Code (Image file name)</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="itemCode"
+                      th:field="*{itemCode}"
+                      placeholder="ex: Z0**"
+                      value=""
+                      
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}"></p>
+                  </div>
+                 </div>
+                 <hr>
+                 <div class="row">
+                   <div class="col-md-4 mb-3">
+                    <label for="itemName">Product Name*</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="itemName"
+                      th:field="*{itemName}"
+                      placeholder="ex: Dishwashing Liquid"
+                      value=""
+                      required
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}"></p>
+                  </div>
+                   <div class="col-md- mb-3">
+                  <label for="itemColor">Product Color</label>
+    				 <input
+                      type="text"
+                      class="form-control"
+                      id="itemColor"
+                      th:field="*{itemColor}"
+                      placeholder="ex: Orange"
+                      value=""
+                      
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemColor')}" th:errors="*{itemColor}"></p>
+                  </div>	
+                  <div class="col-md-2 mb-3">
+                    <label for="itemGram">Product Size</label>
+    				 <input
+                      type="text"
+                      class="form-control"
+                      id="itemGram"
+                      th:field="*{itemGram}"
+                      placeholder="ex: 1.5 liter"
+                      value=""
+                      
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemGram')}" th:errors="*{itemGram}"></p>
+                  </div>	
+                   <div class="col-md-2 mb-3">
+                  <label for="itemPrice">Whole Sale Price*</label>
+    				 <input
+                      type="number"
+                      class="form-control"
+                      id="itemPrice"
+                      th:field="*{itemPrice}"
+                      placeholder="ex: 60.0"
+                       required
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemPrice')}" th:errors="*{itemPrice}"></p>
+                  </div>	
+                </div>
+                <hr>
+                <div class="row">
+	              <div class="col-md-2 mb-3">
+                  <label for="itemPrice">Minimum Whole Sale Pieces</label>
+    				 <input
+                      type="number"
+                      class="form-control"
+                      id="minWholeSalePieces"
+                      th:field="*{minWholeSalePieces}"
+                      placeholder="ex: 6"
+                       
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('minWholeSalePieces')}" th:errors="*{minWholeSalePieces}"></p>
+                  </div>	
+                  
+    	          <div class="col-md-2 mb-3">
+                  <label for="current">Additional Price for Retail</label>
+    				 <input
+                      type="number"
+                      class="form-control"
+                      id="itemAddPriceRetail"
+                      th:field="*{itemAddPriceRetail}"
+                      placeholder="ex: 5"
+                       
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemAddPriceRetail')}" th:errors="*{itemAddPriceRetail}"></p>
+                  </div>	              	
+			    
+                  
+                  
+                  <div class="col-md-2 mb-3">
+                  <label for="itemPrice">Second: Minimum Whole Sale Pieces</label>
+    				 <input
+                      type="number"
+                      class="form-control"
+                      id="minWholeSalePieces2"
+                      th:field="*{minWholeSalePieces2}"
+                      placeholder="Optional"
+                       
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('minWholeSalePieces2')}" th:errors="*{minWholeSalePieces2}"></p>
+                  </div>	
+                  
+    	          <div class="col-md-2 mb-3">
+                  <label for="current">Second: Additional Price for Retail</label>
+    				 <input
+                      type="number"
+                      class="form-control"
+                      id="itemAddPriceRetail2"
+                      th:field="*{itemAddPriceRetail2}"
+                      placeholder="Optional"
+                       
+                    />
+					<p style="color:red" th:if="${#fields.hasErrors('itemAddPriceRetail2')}" th:errors="*{itemAddPriceRetail2}"></p>
+                  </div>	              	
+                  
+                </div>
+ 
+                 <hr class="mb-4" />
+                <button class="btn btn-primary btn-lg btn-block" type="submit">
+                  Save
+                </button>
+               
+				</form>
+				<br>
+				 <a th:href="@{/items/list}" >Back to Product List</a>
+			</div>
+	</div>
+	</div>
+</body>
+
+</html>

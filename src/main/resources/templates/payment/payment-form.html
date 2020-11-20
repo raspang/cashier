@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<head>
+<title>Sale Invoice</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div id="tablePayment"></div>
+		<h1 class="h2 pt-3 mb-3 pb-2 border-bottom">Sales Invoice Form</h1>
+		<div
+			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+			<div class="col">
+				<form action="#" th:action="@{/payments/save}"
+					th:object="${payment}" method="POST" class="needs-validation"
+					autocomplete="off">
+					<input type="hidden" th:field="*{id}" />
+					<div class="row">
+						<div class="col-md-4 mb-3">
+							<label for="date">Date</label> <input type="date"
+								class="form-control form-control-sm text-primary font-weight-bold"
+								id="date" th:field="*{date}" />
+							<p style="color: red" th:if="${#fields.hasErrors('date')}"
+								th:errors="*{date}"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2 mb-3">
+							<button type="button" class="btn btn-default border text-primary"
+								data-toggle="modal" data-target="#exampleModalCenter">
+								<span data-feather="plus-circle"></span>Add
+							</button>
+							<a th:href="@{/payments/showFormForAddClear}"
+								class="btn btn-default border text-danger"> <span
+								data-feather="minus-circle"></span>Clear
+							</a>
+						</div>
+
+					</div>
+					<table  class="col-md-12 table">
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th>Size</th>
+							<th>Color</th>
+							<th>Pieces</th>
+							<th>Price</th>
+							<th>Total Amount</th>
+								<th></th>
+						</tr>
+						<tr th:each="temp : ${paymentItems}">
+							<td><img th:src="@{/assets/img/product/{image}.jpg(image=${temp.code})}" alt="" class="img-fluid " style="height:40px"/></td>
+							<td><span th:text="${temp.itemName}"></span></td>
+							<td><span th:text="${temp.itemGram}"></span></td>
+							<td><span th:text="${temp.itemColor}"></span></td>
+							<td><span th:text="${temp.pieces}"></span></td>
+							<td><span th:text="${temp.itemPrice}"></span></td>
+							<td><span th:text="${temp.itemPrice * temp.pieces}"></span></td>
+							<td>						<a th:href="@{/payments/showFormForRemoveItem(code=${temp.code})}"
+								class="btn btn-default border text-danger"> <span
+								data-feather="minus-circle"></span>Remove
+							</a></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Total: 
+							<input th:value="${totalAmount}" type="number"
+								class="text-mute font-weight-bold form-control" id="totalAmount1" disabled ></input></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><input id="inputValue1" type="number" onchange="updateInput(this.value)" placeholder="customer amount"/>=<input type="number" id="outputValue1" disabled /></td>
+							<td></td>
+						</tr>
+
+					</table>
+					<p style="color: red" th:if="${#fields.hasErrors('paymentItems')}"
+						th:errors="*{paymentItems}"></p>
+					<hr class="mb-4" />
+					<button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+				</form>
+				<br> <a th:href="@{/payments/list}">Back to Payments List</a>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">Product</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+
+					
+					<form action="#" th:action="@{/payments/showFormForAddItem}"
+						th:object="${payment}" method="GET" class="needs-validation"
+						autocomplete="off">
+						<div class="modal-body">
+
+							<div class="row">
+							
+
+								
+								<div class="col-md-4 mb-3">
+									<label for="pieces">Piece(s)</label>
+									<input type="number" class="form-control" id="pieces" name="pieces" placeholder=""
+										value="1" />
+								</div>
+
+								
+								<div class="col-md-4 mb-3">
+									<label>Code</label>
+									<input type="search" class="form-control form-control-dark w-100 border"
+									placeholder="Enter Code" 
+									name="code" id="code" size="30"/>
+							    </div>
+							 </div>
+							    <div class="col-md-4 mb-3">
+									<input type="checkbox" class="form-check-input" name="markAsWholeSale" id="markAsWholeSale" value="true">
+    									<label class="form-check-label" for="markAsWholeSale">Mark as Whole Sale</label>
+								</div>
+							    
+							    
+
+					
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</div>
+					</form>
+					
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

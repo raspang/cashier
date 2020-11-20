@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<head>
+<title>Sales Invoice</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	
+		<div class="mt-3 alert alert-success" role="alert" th:if="${param.success != null}">
+		 	Successfully <span th:text="${param.success}"></span>.
+		</div>
+
+		<div
+			class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+			<div>
+				<h3 class="h3">Sales Invoice</h3>
+			</div>
+			
+			<h6>
+			Total Amount Today: <span th:text="${totalAmountToday}"></span>
+			</h6>
+		</div>
+		<a
+			th:href="@{/payments/showFormForAdd}" class="btn btn-primary m-2">Add</a>
+
+		<div class="table-responsive">
+			<table class="table table-sm table-bordered" >
+				<thead class="thead-dark">
+					<tr>
+						<th style="width: 13%">Date</th>
+						<th>Issued By</th>
+						<th>Items</th>
+						<th style="width: 5%"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p: ${payments} ">
+						<td ><span th:text="${p.dateStr}"></span></td>
+						<td><i><span th:text="${p.issuedBy}"></span></i></td>
+						<td >
+							<table class="table  table-sm table-hover">
+								<thead class="thead-light">
+									<tr style="color:gray">
+										<th style="width: 20%">Product Name</th>
+										<th style="width: 8%">Size</th>
+										<th style="width: 6%">Color</th>
+										<th style="text-align: right;width: 6%">Pieces</th>
+										<th style="text-align: right;width: 10%">Product Price</th>
+										<th style="text-align: right;width: 10%">Total Amount</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr th:each="pI : ${p.paymentItems}">
+										<td><i><span th:text="${pI.itemName}"></span></i></td>
+										<td><i><span th:text="${pI.itemGram}"></span></i></td>
+										<td><i><span th:text="${pI.itemColor}"></span></i></td>
+										<td style="text-align: right;"><i><span th:text="${pI.pieces}"></span></i></td>
+										<td style="text-align: right;"><i><span th:text="${pI.itemPrice}"></span></i></td>
+										<td style="text-align: right;"><i><span th:text="${pI.totalAmount}"></span></i></td>
+									</tr>
+									<tr class="table-light">
+										<th colspan="5"></th>
+										<th style="text-align: right; color:blue"><span th:text="${p.totalAmount}"></span></th>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						
+						<td class="text-center" >
+						<a th:href="@{/payments/showReceipt(id=${p.id})}" class="btn btn-outline-success m-2">Receipt</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+			<nav aria-label="Pagination" th:if="${payments.totalPages gt 0}">
+			    <ul class="pagination justify-content-center font-weight-medium">
+			        <li class="page-item" th:classappend="${payments.number eq 0} ? 'disabled'">
+			            <a class="page-link svg-icon"
+			               th:href="@{/payments/list?page={id}(id=${payments.number lt 2 ? 1 : payments.number})}"
+			               aria-label="Previous"
+			               title="Previous Page" rel="tooltip">
+			                <span aria-hidden="true" data-feather="chevrons-left" width="20" height="20"></span>
+			            </a>
+			        </li>
+			        <li class="page-item" th:classappend="${i eq payments.number + 1} ? 'active'"
+			            th:each="i : ${#numbers.sequence( payments.number + 1, payments.totalPages > 10 + payments.number ? payments.number + 10 : payments.totalPages, 1)}">
+			            <a class="page-link" th:href="@{/payments/list?page={id}(id=${i})}" th:text="${i}"
+			               th:title="${'Page '+ i}"
+			               rel="tooltip"></a>
+			        </li>
+			        <li class="page-item disabled" th:if="${payments.number + 10 < payments.totalPages}">
+			            <a class="page-link svg-icon" href="#">
+			                <span data-feather="more-horizontal" width="20" height="20"></span>
+			            </a>
+			        </li>
+			        <li class="page-item" th:classappend="${payments.number + 1 eq payments.totalPages} ? 'disabled'">
+			            <a class="page-link svg-icon" th:href="@{/payments/list?page={id}(id=${payments.number + 2})}"
+			               aria-label="Next"
+			               title="Next Page" rel="tooltip">
+			                <span aria-hidden="true" data-feather="chevrons-right" width="20" height="20"></span>
+			            </a>
+			        </li>
+			    </ul>
+			</nav>
+		</div>
+		
+			
+			
+	</div>
+</body>
+
+</html>

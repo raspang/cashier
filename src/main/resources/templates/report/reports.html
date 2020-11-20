@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<head>
+<title>Reports</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+			<h1 class="h2">Reports</h1>
+		</div>
+		<div class="container">
+
+		
+			
+			<form th:action="@{/report/payment}" method="GET" >
+					<label>Daily Sale</label>
+					<div class="row">
+				 
+				  <div class="col-m-4">
+					<input type="date" class="form-control   border" name="date" id="datePicker" size="30"/>
+				</div>
+				<div class="col-m-2">
+					<input type="submit" class="btn btn-info mt-1 ml-4 btn-sm"/>
+				</div>
+					</div>
+			</form>
+			
+		<hr>
+					<form th:action="@{/report/expense}" method="GET" >
+					<label>Daily Expense</label>
+					<div class="row">
+				 
+				  <div class="col-m-4">
+					<input type="date" class="form-control   border" name="date" id="datePicker2" size="30"/>
+				</div>
+				<div class="col-m-2">
+					<input type="submit" class="btn btn-info mt-1 ml-4 btn-sm"/>
+				</div>
+					</div>
+			</form>
+			<hr>
+			
+		<div class="row">
+			<div class="col-m-4">
+			<a class="btn btn-info btn-sm" th:href="@{/report/products}"  target="_blank"><span class="text-white">List of Products</span></a>
+			</div>
+		</div>
+		<hr>
+		</div>
+		</div>
+		
+
+		
+	<!-- 
+		<a href="" th:action="@{/items/list}">Items</a>
+		
+				<h1>List Products</h1>
+		<a href="" th:action="@{/items/list}">Items</a>
+		
+				<h1>List Products</h1>
+		<a href="" th:action="@{/items/list}">Items</a>
+
+ -->
+
+	</div>
+</body>
+
+</html>
